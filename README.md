@@ -26,3 +26,17 @@ Install django in the virtual environment with the following command:
 ```
 $ pip install -r requirements.txt
 ```
+## Migrate
+Do migration only once before starting the server, or after any change to the database model with
+
+```
+python hospitalmgmt/manage.py migrate [port]
+```
+
+
+## Running the server
+Run the server with the following code inside the virtual environment:
+
+```
+python hospitalmgmt/manage.py runserver [port]
+```
