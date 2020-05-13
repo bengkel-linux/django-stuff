@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('details/<int:pk>', views.index, name='app-detail'), #TODO: replace the vies.index to the appropriate
+    path('', views.GeneralView.as_view(), name='all'),
+    path('new', views.new_entry, name='new'),
+    path('details/<int:pk>', views.DetailView.as_view(), name='app-detail'),
 ]

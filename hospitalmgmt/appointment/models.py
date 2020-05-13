@@ -10,8 +10,8 @@ class Appointment(models.Model):
     caseType = models.CharField("Type of Case", max_length=200, default="")
     phoneContact = models.CharField("Phone Number", max_length=200, null=True, blank=True)
     address = models.CharField("Address", max_length=200, null=True, blank=True)
-    appointmentDate = models.DateTimeField("Last Updated")
-    nextRoom = models.CharField("Next Room Appointed", max_length=200, null=True, blank=True)
+    appointmentDate = models.DateTimeField("Next Appointment Time")
+    nextRoom = models.CharField("Next Appointed Room", max_length=200, null=True, blank=True)
     class StatusName(models.IntegerChoices):
         OPEN = 0, gtlz("Open")
         CLOSED = 1, gtlz("Closed")
@@ -30,3 +30,6 @@ class Appointment(models.Model):
         return str(self.id)
     def get_absolute_url(self):
         return reverse('app-detail', args=[str(self.id)])
+
+    # TO CHECK IF NULL / NO ENTRY
+    # {% if somevar is None %}
