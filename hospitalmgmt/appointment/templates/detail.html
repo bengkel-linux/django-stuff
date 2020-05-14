@@ -1,9 +1,20 @@
 <!-- -*- web -*- -->
 {% extends "base_template.html" %}
 
+{% block title %}
+<title>
+    Appointment Ticket : {{ appointment.id }}
+</title>
+{% endblock %}
 {% block content %}
 <div class="row">
     <h1>Appointment Time</h1>
+</div>
+<div class="row">
+    <h3>
+        {{ appointment.familieName|title }}{% if appointment.surName is not None %}, {{ appointment.surName|title }}
+        {% endif %}
+    </h3>
 </div>
 <div class="row">
     <table class="table table-bordered table-striped">
@@ -22,7 +33,7 @@
             <tr>
                 <th scope="row"><a href="{{ app.get_absolute_url }}">{{ app.id }}</a></th>
                 <td>{{ app.familieName|title }}</td>
-                <td>{{ app.surName|default_if_none:""|title }}</td>
+                <td>{{ app.surName|default_if_none:"",title }}</td>
                 <td>{{ app.appointmentDate }}</td>
                 <td>{{ app.nextRoom|default_if_none:"-" }}</td>
                 <td>{{ app.get_status_display }}</td>
