@@ -32,3 +32,15 @@
     </table>
 </div>
 {% endblock %}
+
+
+{% block sidebar %}
+<ul class="sidebar-nav">
+    {% if Verbose %}
+    <li><a href="{% url 'all' %}">Simplified View</a></li>
+    {% else %}
+    <li><a href="{% url 'verbose' %}">Verbose View</a></li>
+    {% endif%}
+    <li><a href="{% url 'new' %}">New</a></li>
+</ul>
+{% endblock %}

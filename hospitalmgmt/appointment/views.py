@@ -35,11 +35,19 @@ class GeneralView(generic.ListView):
     template_name = 'all.html'
     def get_queryset(self):
         return Appointment.objects.filter(hidden=False)
+    def get_context_data(self,**kwargs):
+        context = super(GeneralView,self).get_context_data(**kwargs)
+        context['Verbose'] = False
+        return context
 
 class VerboseView(generic.ListView):
     model = Appointment
     paginate_by = 10
     template_name = 'all.html'
+    def get_context_data(self,**kwargs):
+        context = super(VerboseView,self).get_context_data(**kwargs)
+        context['Verbose'] = True
+        return context
 
 class DetailView(generic.DetailView):
     model = Appointment
