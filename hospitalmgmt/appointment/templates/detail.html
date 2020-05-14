@@ -33,6 +33,16 @@
                     <input type="text" class="form-control" id="surName" value="{{ appointment.surName|default_if_none:""|title }}">
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="apptDate">Appointment Date</label>
+                    <input type="date" class="form-control" id="apptDate" value="{{ appointment.appointmentDate|date:"Y-m-d" }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="apptTime">Appointment Time</label>
+                    <input type="time" class="form-control" id="apptTime" value="{{ appointment.appointmentDate|date:"H:i" }}">
+                </div>
+            </div>
         </form>
     </div>
 </div>
