@@ -10,6 +10,9 @@ from .models import Appointment
 def new_entry(request):
     return render(request, 'new.html', context=context)
 
+def new_post(request):
+    return HttpResponseRedirect(reverse('all'))
+
 def update(request, pk):
     if request.method == "POST":
         obj = Appointment.objects.get(id=pk)
@@ -26,7 +29,7 @@ def update(request, pk):
         obj.hidden = 'hide' in request.POST
         obj.description = get_none(request.POST['desc'])
         obj.save()
-    return HttpResponseRedirect(reverse('app-detail', args=[pk]) )
+    return HttpResponseRedirect(reverse('app-detail', args=[pk]))
 
 
 class GeneralView(generic.ListView):
