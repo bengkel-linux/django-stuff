@@ -43,6 +43,14 @@
                     <input type="time" class="form-control" id="apptTime" value="{{ appointment.appointmentDate|date:"H:i" }}">
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="telNum">Contact Phone</label>
+                    <input type="telephone" class="form-control" id="telNum" value="{{ appointment.phoneContact|default_if_none:""|title }}">
+                </div>
+            </div>
+
+
         </form>
     </div>
 </div>
