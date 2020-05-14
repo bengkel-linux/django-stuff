@@ -23,7 +23,7 @@
                 <th scope="row"><a href="{{ app.get_absolute_url }}">{{ app.id }}</a></th>
                 <td>{{ app.familieName|title }}</td>
                 <td>{{ app.surName|default_if_none:""|title }}</td>
-                <td>{{ app.appointmentDate }}</td>
+                <td>{{ app.appointmentDate|date:"Y-m-d, H:i I" }}</td>
                 <td>{{ app.nextRoom|default_if_none:"-" }}</td>
                 <td>{{ app.get_status_display }}</td>
             </tr>
