@@ -21,9 +21,9 @@
             <tr>
                 <th scope="row"><a href="{{ app.get_absolute_url }}">{{ app.id }}</a></th>
                 <td>{{ app.familieName }}</td>
-                <td>{{ app.surName }}</td>
+                <td>{{ app.surName|default_if_none:"" }}</td>
                 <td>{{ app.appointmentDate }}</td>
-                <td>{{ app.nextRoom }}</td>
+                <td>{{ app.nextRoom|default_if_none:"-" }}</td>
                 <td>{{ app.get_status_display }}</td>
             </tr>
             {% endfor %}
