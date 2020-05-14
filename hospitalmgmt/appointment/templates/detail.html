@@ -19,59 +19,60 @@
 <div class="row">
     <div class="container-fluid">
         <form action="{% url 'app-post-detail' appointment.id %}" method="post">
+            {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="famName">Family Name</label>
-                    <input type="text" class="form-control" id="famName" maxlength="200" value="{{ appointment.familieName|title }}" required>
+                    <input type="text" class="form-control" id="famName" maxlength="200" name="familyname" value="{{ appointment.familieName|title }}" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="nickName">Nickame</label>
-                    <input type="text" class="form-control" id="nickName" maxlength="200" value="{{ appointment.nickName|default_if_none:""|title }}">
+                    <input type="text" class="form-control" id="nickName" maxlength="200" name="nickname" value="{{ appointment.nickName|default_if_none:""|title }}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="surName">Surname</label>
-                    <input type="text" class="form-control" id="surName" maxlength="200" value="{{ appointment.surName|default_if_none:""|title }}">
+                    <input type="text" class="form-control" id="surName" maxlength="200" name="surname" value="{{ appointment.surName|default_if_none:""|title }}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="apptDate">Appointment Date</label>
-                    <input type="date" class="form-control" id="apptDate" value="{{ appointment.appointmentDate|date:"Y-m-d" }}">
+                    <input type="date" class="form-control" id="apptDate" name="date" value="{{ appointment.appointmentDate|date:"Y-m-d" }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="apptTime">Appointment Time</label>
-                    <input type="time" class="form-control" id="apptTime" value="{{ appointment.appointmentDate|date:"H:i" }}">
+                    <input type="time" class="form-control" id="apptTime" name="time" value="{{ appointment.appointmentDate|date:"H:i" }}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="caseType">Type of Case</label>
-                    <input type="text" class="form-control" id="caseType" maxlength="200" value="{{ appointment.caseType }}" required>
+                    <input type="text" class="form-control" id="caseType" maxlength="200" name="case" value="{{ appointment.caseType }}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="telNum">Contact Phone</label>
-                    <input type="telephone" class="form-control" id="telNum" maxlength="200" value="{{ appointment.phoneContact|default_if_none:"" }}" required>
+                    <input type="telephone" class="form-control" id="telNum" maxlength="200" name="phone" value="{{ appointment.phoneContact|default_if_none:"" }}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="addr">Home Address</label>
-                    <input type="text" class="form-control" id="addr" maxlength="200" value="{{ appointment.address|default_if_none:"" }}">
+                    <input type="text" class="form-control" id="addr" maxlength="200" name="address" value="{{ appointment.address|default_if_none:"" }}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="nextRoom">Next Appointed Room</label>
-                    <input type="text" class="form-control" id="nextRoom" maxlength="200" value="{{ appointment.nextRoom|default_if_none:"-" }}">
+                    <input type="text" class="form-control" id="nextRoom" maxlength="200" name="room" value="{{ appointment.nextRoom|default_if_none:"-" }}">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-sm-4">
                     <label for="status">Ticket Status</label>
-                    <select id="status">
+                    <select id="status" name="stats">
                         {% for x, y in appointment.get_status %}
                         <option value="{{ x }}"{% if appointment.status == x %} selected{% endif %}>{{ y }}</option>
                         {% endfor %}
@@ -79,17 +80,17 @@
                 </div>
                 <div class="form-group col-sm-4">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="gender" type="radio" id="maleSelection" value="1" {% if appointment.genderMale %} checked {% endif %}>
+                        <input class="form-check-input" name="gender" type="radio" id="maleSelection" value="m" {% if appointment.genderMale %} checked {% endif %}>
                         <label class="form-check-label" for="maleSelection">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="gender" type="radio" id="femaleSelection" value="0" {% if not appointment.genderMale %} checked {% endif %}>
+                        <input class="form-check-input" name="gender" type="radio" id="femaleSelection" value="f" {% if not appointment.genderMale %} checked {% endif %}>
                         <label class="form-check-label" for="femaleSelection">Female</label>
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
                     <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" value="True" id="hidenApp" {% if appointment.hidden %} checked {% endif %}>
+                        <input class="custom-control-input" type="checkbox" value="" id="hidenApp" name="hide" {% if appointment.hidden %} checked {% endif %}>
                         <label class="custom-control-label" for="hidenApp">Hide from list</label>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="desc">Notes and Description</label>
-                    <input type="text" class="form-control input-large" id="desc" value="{{ appointment.description }}">
+                    <input type="text" class="form-control input-large" id="desc" name="desc" value="{{ appointment.description }}">
                 </div>
             </div>
 

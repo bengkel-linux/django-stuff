@@ -33,5 +33,8 @@ class Appointment(models.Model):
         return reverse('app-detail', args=[str(self.id)])
     def get_status(self):
         return self.StatusName.choices
+    # Pagination
+    class Meta:
+        ordering = ['id']
     # TO CHECK IF NULL / NO ENTRY
     # {% if somevar is None %}

@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="row">
-    <h1>Appointment Time</h1>
+    <h1>Appointment Time{% if Verbose %} - Verbose {%endif%}</h1>
 </div>
 <div class="row">
     <table class="table table-bordered table-striped">
@@ -31,4 +31,16 @@
         </tbody>
     </table>
 </div>
+{% endblock %}
+
+
+{% block sidebar %}
+<ul class="sidebar-nav">
+    {% if Verbose %}
+    <li><a href="{% url 'all' %}">Simplified View</a></li>
+    {% else %}
+    <li><a href="{% url 'verbose' %}">Verbose View</a></li>
+    {% endif%}
+    <li><a href="{% url 'new' %}">New</a></li>
+</ul>
 {% endblock %}
