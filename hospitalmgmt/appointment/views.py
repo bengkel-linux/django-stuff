@@ -7,6 +7,10 @@ from .models import Appointment
 def new_entry(request):
     return render(request, 'new.html', context=context)
 
+def updates(request, pk):
+    return render(request, 'new.html')
+
+
 class GeneralView(generic.ListView):
     model = Appointment
     paginate_by = 10

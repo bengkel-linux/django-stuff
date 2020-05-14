@@ -19,6 +19,7 @@
 <div class="row">
     <div class="container-fluid">
         <form action="{% url 'app-post-detail' appointment.id %}" method="post">
+            {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="famName">Family Name</label>
