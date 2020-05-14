@@ -31,6 +31,7 @@ class Appointment(models.Model):
         return str(self.id)
     def get_absolute_url(self):
         return reverse('app-detail', args=[str(self.id)])
-
+    def get_status(self):
+        return self.StatusName.choices
     # TO CHECK IF NULL / NO ENTRY
     # {% if somevar is None %}
