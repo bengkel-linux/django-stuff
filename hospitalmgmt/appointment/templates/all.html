@@ -1,3 +1,4 @@
+<!-- -*- web -*- -->
 {% extends "base_template.html" %}
 
 {% block content %}
@@ -20,10 +21,10 @@
             {% for app in appointment_list %}
             <tr>
                 <th scope="row"><a href="{{ app.get_absolute_url }}">{{ app.id }}</a></th>
-                <td>{{ app.familieName }}</td>
-                <td>{{ app.surName }}</td>
-                <td>{{ app.appointmentDate }}</td>
-                <td>{{ app.nextRoom }}</td>
+                <td>{{ app.familieName|title }}</td>
+                <td>{{ app.surName|default_if_none:""|title }}</td>
+                <td>{{ app.appointmentDate|date:"Y-m-d, H:i" }}</td>
+                <td>{{ app.nextRoom|default_if_none:"-" }}</td>
                 <td>{{ app.get_status_display }}</td>
             </tr>
             {% endfor %}

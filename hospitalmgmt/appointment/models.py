@@ -26,10 +26,12 @@ class Appointment(models.Model):
     # META DATA
     lastUpdatedDate = models.DateTimeField("Last Updated", auto_now=True)
     creationDate = models.DateTimeField("Creation", auto_now_add=True)
+    hidden = models.BooleanField("Hide by default", default=False)
     def __str__(self):
         return str(self.id)
     def get_absolute_url(self):
         return reverse('app-detail', args=[str(self.id)])
-
+    def get_status(self):
+        return self.StatusName.choices
     # TO CHECK IF NULL / NO ENTRY
     # {% if somevar is None %}
