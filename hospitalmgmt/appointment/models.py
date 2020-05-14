@@ -26,6 +26,7 @@ class Appointment(models.Model):
     # META DATA
     lastUpdatedDate = models.DateTimeField("Last Updated", auto_now=True)
     creationDate = models.DateTimeField("Creation", auto_now_add=True)
+    hidden = models.BooleanField("Hide by default", default=False)
     def __str__(self):
         return str(self.id)
     def get_absolute_url(self):
