@@ -46,4 +46,24 @@
         </form>
     </div>
 </div>
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <h6>Last Updated:</h6>
+            </div>
+            <div class="col-sm-9">
+                {{ appointment.lastUpdatedDate|date:"Y-m-d, H:i" }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <h6>Ticket Creation Date:</h6>
+            </div>
+            <div class="col-sm-9">
+                {{ appointment.creationDate|date:"Y-m-d, H:i" }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
