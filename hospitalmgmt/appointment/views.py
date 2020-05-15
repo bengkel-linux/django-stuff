@@ -8,7 +8,28 @@ from .models import Appointment
 # Create your views here.
 
 def new_entry(request):
+    context = {
+        'choices' : Appointment.StatusName.choices
+    }
     return render(request, 'new.html', context=context)
+
+def new_post(request):
+    if request.method == "POST":
+        obj = Appointment()
+        obj.familieName = request.POST['familyname']
+        obj.surName = get_none(request.POST['surname'])
+        obj.nickName = get_none(request.POST['nickname'])
+        obj.caseType = request.POST['case']
+        obj.phoneContact = get_none(request.POST['phone'])
+        obj.address = get_none(request.POST['address'])
+        obj.appointmentDate = to_datetime(request.POST['date'], request.POST['time'])
+        obj.nextRoom = request.POST['room'] if request.POST['room'] and request.POST['room'] != "-" else None
+        obj.status = request.POST['stats']
+        obj.genderMale = request.POST['gender'] == "m"
+        obj.hidden = 'hide' in request.POST
+        obj.description = get_none(request.POST['desc'])
+        obj.save()
+    return HttpResponseRedirect(reverse('all'))
 
 def update(request, pk):
     if request.method == "POST":
@@ -26,7 +47,7 @@ def update(request, pk):
         obj.hidden = 'hide' in request.POST
         obj.description = get_none(request.POST['desc'])
         obj.save()
-    return HttpResponseRedirect(reverse('app-detail', args=[pk]) )
+    return HttpResponseRedirect(reverse('app-detail', args=[pk]))
 
 
 class GeneralView(generic.ListView):
