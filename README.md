@@ -1,5 +1,5 @@
-# django-stuff
-just django stuff
+# Appointment
+A website for appointment
 
 ## Setup Environment
 It's highly recomended to setup django in a virtual environment
